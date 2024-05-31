@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import 'App.css';
+import Home from 'components/Home';
+import Dynamic from 'components/Dynamic';
+import NotFound from 'components/NotFound';
+import Todos from 'components/Todos';
+import Counter from 'components/Counter';
+import Calculator from 'components/Calculator';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/todos" element={<Todos />} />
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/calculator" element={<Calculator />} />
+        <Route path="/:id" element={<Dynamic numeric />} />
+        <Route path="search">
+          <Route path=":id" element={<Dynamic />} />
+        </Route>
+        <Route element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
-export default App;
+export default React.memo(App);
