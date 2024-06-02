@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import './App.css';
+import { getFormattedDateString } from './utils';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App: FC = React.memo(() => {
+  const [currentTime, setCurrentTime]: [string, Dispatch<SetStateAction<string>>] = useState('');
+
+    useEffect(() => {
+        setCurrentTime(getFormattedDateString(new Date()));
+    }, []);
+
+    return <div className='date'>
+        <span>Current Time: {currentTime}</span>
     </div>
-  );
-}
+});
 
 export default App;
