@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-
-type CalculatorProps = {};
-
-type DisplayProps = {
-  value: string;
-};
-
-type KeypadProps = {
-  numClickHandler: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  commaClickHandler: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  signClickHandler: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  equalsClickHandler: () => void;
-  clearClickHandler: () => void;
-};
+import { CalculatorProps, DisplayProps, KeypadProps } from "./types";
 
 const Calculator: React.FC<CalculatorProps> = () => {
   const [num, setNum] = useState<string>("");
@@ -59,8 +46,6 @@ const Calculator: React.FC<CalculatorProps> = () => {
       case "/":
         result = parseFloat(res) / parseFloat(num);
         break;
-      default:
-        result = parseFloat(num);
     }
 
     setNum(result.toString());

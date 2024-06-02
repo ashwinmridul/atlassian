@@ -1,5 +1,5 @@
 export interface CounterProps {
     counter: number;
-    increment: () => void,
-    decrement: () => void
+    increment: () => void;
+    decrement: () => void;
 }

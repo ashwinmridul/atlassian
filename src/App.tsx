@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import 'App.css';
+import './App.css';
 import Home from 'components/Home';
 import Dynamic from 'components/Dynamic';
 import NotFound from 'components/NotFound';
