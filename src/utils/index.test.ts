@@ -12,7 +12,7 @@ describe('getCurrentTime', () => {
     });
 
     it('returns the current time in HH:mm format', () => {
-        expect(getCurrentTime()).toBe('14:30');
+        expect(getCurrentTime()).toBe('14:30:00');
     });
 
     it('pads hours with leading zero if necessary', () => {
@@ -20,7 +20,7 @@ describe('getCurrentTime', () => {
         jest
             .useFakeTimers()
             .setSystemTime(new Date('2022-07-25T08:30:00.000Z'));
-        expect(getCurrentTime()).toBe('08:30');
+        expect(getCurrentTime()).toBe('08:30:00');
     });
 
     it('pads minutes with leading zero if necessary', () => {
@@ -28,7 +28,7 @@ describe('getCurrentTime', () => {
         jest
             .useFakeTimers()
             .setSystemTime(new Date('2022-07-25T14:05:00.000Z'));
-        expect(getCurrentTime()).toBe('14:05');
+        expect(getCurrentTime()).toBe('14:05:00');
     });
 
     it('returns a string', () => {
