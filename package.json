@@ -156,7 +156,8 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ],
-    "resetMocks": true
+    "resetMocks": true,
+    "globalSetup": "./global-setup.ts"
   },
   "babel": {
     "presets": [

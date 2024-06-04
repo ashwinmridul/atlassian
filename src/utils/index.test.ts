@@ -1,13 +1,37 @@
-import { getFormattedDateString } from './'
+import { getCurrentTime } from './'
 
-describe('getFormattedDateString', () => {
-    it('returns a formatted date string in default locale', () => {
-        expect(getFormattedDateString(new Date('2022-07-25 14:30:00'))).toBe('7/25/2022 2:30:00 PM');
+describe('getCurrentTime', () => {
+    beforeEach(() => {
+        jest
+            .useFakeTimers()
+            .setSystemTime(new Date('2022-07-25T14:30:00.000Z'));
     });
-    
-    it('does not throw an error with an invalid date', () => {
-        const invalidDate: Date = new Date(' invalid date ');
-        expect(() => getFormattedDateString(invalidDate)).not.toThrowError();
-        expect(getFormattedDateString(invalidDate)).toBe('Invalid Date Invalid Date');
+
+    afterEach(() => {
+        jest.useRealTimers();
+    });
+
+    it('returns the current time in HH:mm format', () => {
+        expect(getCurrentTime()).toBe('14:30');
+    });
+
+    it('pads hours with leading zero if necessary', () => {
+        // Mock the Date constructor to return a date with hours < 10
+        jest
+            .useFakeTimers()
+            .setSystemTime(new Date('2022-07-25T08:30:00.000Z'));
+        expect(getCurrentTime()).toBe('08:30');
+    });
+
+    it('pads minutes with leading zero if necessary', () => {
+        // Mock the Date constructor to return a date with minutes < 10
+        jest
+            .useFakeTimers()
+            .setSystemTime(new Date('2022-07-25T14:05:00.000Z'));
+        expect(getCurrentTime()).toBe('14:05');
+    });
+
+    it('returns a string', () => {
+        expect(typeof getCurrentTime()).toBe('string');
     });
 });
