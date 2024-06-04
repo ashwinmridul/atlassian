@@ -9,7 +9,7 @@ const App: FC = React.memo(() => {
         setCurrentTime(getFormattedDateString(new Date()));
     }, []);
 
-    return <div className='date'>
+    return <div className='date' data-testid='date'>
         <span>Current Time: {currentTime}</span>
     </div>
 });
