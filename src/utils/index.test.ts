@@ -1,8 +1,13 @@
 import { getFormattedDateString } from './'
 
-describe('utils', (): void => {
-    it('getFormattedDateString', (): void => {
-        const date: Date = new Date('2024-12-23 23:12:50');
-        expect(getFormattedDateString(date)).toEqual('12/23/2024 11:12:50 PM');
-    });
-});
+describe('getFormattedDateString', () => {
+    it('returns a formatted date string in default locale', () => {
+        expect(getFormattedDateString(new Date('2022-07-25 14:30:00'))).toBe('7/25/2022 2:30:00 PM');
+      });
+    
+      it('does not throw an error with an invalid date', () => {
+        const invalidDate: Date = new Date(' invalid date ');
+        expect(() => getFormattedDateString(invalidDate)).not.toThrowError();
+        expect(getFormattedDateString(invalidDate)).toBe('Invalid Date Invalid Date');
+      });
+  });
